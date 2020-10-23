@@ -334,3 +334,92 @@ This is how it works:
 * A JavaScript Callback Function is a function that is passed as a parameter to another JavaScript function, and the callback function is run inside of the function it was passed into. JavaScript Callback Functions can be used synchronously or asynchronously.
 
 
+**jQuery**
+
+* jQuery is a lightweight, "write less, do more", JavaScript library.
+
+* The purpose of jQuery is to make it much easier to use JavaScript on your website.
+
+* jQuery takes a lot of common tasks that require many lines of JavaScript code to accomplish, and wraps them into methods that you can call with a single line of code.
+
+Example:- document.querySelector("h1") === $("h1")
+
+* There are two ways to incorporate jQuery in your code:-
+
+1. Use $(document).ready(function(){
+      //jQuery Code
+]);
+
+2. Link the Javascript and jQuery files in the HTML file just before the closing body tag.
+
+NOTE:- Both the ways will do exactly the same thing.
+
+* www.minify.org is the website on which you can minify your code of JavaScript or CSS.
+
+* There is no difference between selectiong one or selecting many in jQuery as it is selected by the same $ symbol.
+document.querySelector("h1") => $("h1")
+document.querySelectorAll("button") => $("button")
+
+We can manipulate the styles in JQuery by using .css("property", "propertyValue") method
+
+* If you are having one property in .css method then you are getting the value of that property or if you are having two properties in .css method then you are setting the value of that property.
+
+* .addClass("") is used to add class to specific element using jQuery.
+* .removeClass("") is used to remove class from specific element using jQuery.
+* .hasClass("") is used to check whether the element is having that particular class or not. It will return boolean value.
+
+* .text() or .html() methods are used to manipulate texts using jQuery.
+.text() method is used to manipulate text only whereas .html() method can manipulate text as well styles to that particular text.
+
+* .attr("") returns the value of that specific attribute whereas .attr("", "") sets the value of attribute to the second parameter.
+
+* In jQuery it is so easy to add event listener just by using .click(function(){
+});
+
+* .on("event", function(){
+
+});
+on() method is used to add event to the selected element.
+
+* .before() method is used to add new element just before the opening tag of the selected element
+* .after() method is used to add new element just after the closing tag of the  selected element
+* .prepend() method is used to add new element just before the content of the selected tag and right after the opening tag
+
+* .append() method is used to add new element just after the content of the selected tag and inside the tag only.
+
+* .remove() method is used to remove the selected element.
+* .hide() method is used to hide the selected element.
+* .show() method is used to show the hidden element.
+
+* .fadeOut() method:- The fadeOut() method gradually changes the opacity, for selected elements, from visible to hidden (fading effect).
+$(selector).fadeOut(speed,easing,callback)
+
+* .fadeIn() method:- The fadeIn() method gradually changes the opacity, for selected elements, from hidden to visible (fading effect).
+$(selector).fadeIn(speed,easing,callback)
+
+* .fadeToggle() method:- The fadeToggle() method toggles between the fadeIn() and fadeOut() methods.
+
+If the elements are faded out, fadeToggle() will fade them in.
+If the elements are faded in, fadeToggle() will fade them out.
+$(selector).fadeToggle(speed,easing,callback)
+
+* The slideUp() method slides-up (hides) the selected elements.
+* The slideDown() method slides-down (shows) the selected elements.
+* The slideToggle() method toggles between slideUp() and slideDown() for the selected elements.
+
+This method checks the selected elements for visibility. slideDown() is run if an element is hidden. slideUp() is run if an element is visible - This creates a toggle effect.
+
+* The animate() method performs a custom animation of a set of CSS properties.
+
+This method changes an element from one state to another with CSS styles. The CSS property value is changed gradually, to create an animated effect.
+(selector).animate({styles},speed,easing,callback)
+
+* .setTimeOut(function(){ 
+ //
+}, 1000);
+
+The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
+
+Tip: 1000 ms = 1 second.
+
+
