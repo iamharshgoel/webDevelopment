@@ -422,4 +422,394 @@ The setTimeout() method calls a function or evaluates an expression after a spec
 
 Tip: 1000 ms = 1 second.
 
+** UNIX COMMANDS **'
 
+ls - List
+cd - Change Directory
+mkdir - Make Directory
+ctrl + A take you to the starting of the command line.
+ctrl + E take you to the ending of the command line.
+ctrl + U clears your entire line
+touch filename => used to make new file
+rm is used to remove a file
+pwd print working directory-> it will provide you the path to your destination
+rm * remove all the files inside the folder
+rm -rf removes a directory
+
+sudo rm -rf --no-preserve-root/ => This command will wipe out your Hard Disk where you cannot recover anything.
+
+
+**BACK-END DEVELOPMENT**
+
+* Eventbrite
+
+Client-Side + Server + Database  =  Full-Stack Development
+
+#Node.js:-
+
+* Node.js allows us to use JavaScript to interact directly with the hardware of the computer. 
+Example:- To create a desktop application
+
+**What is Node.js?**
+1. Node.js is an open source server environment
+2. Node.js is free
+3. Node.js runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)
+4. Node.js uses JavaScript on the server
+
+Why Node.js?
+Node.js uses asynchronous programming!
+
+A common task for a web server can be to open a file on the server and return the content to the client.
+
+#Here is how Node.js handles a file request:
+
+1. Sends the task to the computer's file system.
+2. Ready to handle the next request.
+3. When the file system has opened and read the file, the server returns the content to the client.
+4. Node.js eliminates the waiting, and simply continues with the next request.
+
+Node.js runs single-threaded, non-blocking, asynchronously programming, which is very memory efficient.
+
+**What Can Node.js Do?**
+1. Node.js can generate dynamic page content
+2. Node.js can create, open, read, write, delete, and close files on the server
+3. Node.js can collect form data
+4. Node.js can add, delete, modify data in your database
+
+**What is a Node.js File?**
+1. Node.js files contain tasks that will be executed on certain events
+2. A typical event is someone trying to access a port on the server
+3. Node.js files must be initiated on the server before having any effect
+4. Node.js files have extension ".js"
+
+#Here is how PHP or ASP handles a file request:
+
+* Sends the task to the computer's file system.
+* Waits while the file system opens and reads the file.
+* Returns the content to the client.
+* Ready to handle the next request. 
+
+* node filename.js is used to run a file using command line.
+* When we type node in command line and hit enter then it will take you to Node REPL (Read Evaluation Print Loops)
+
+* To exit the REPL you can type .exit and hit enter or press ctrl+C two times.
+
+* **const** keyword is used to create a constant and assigning it a value, lateron I can't change the value.
+
+* NPM => Node Package Manager
+
+To use NPM, first run the command **npm init** in the right directory. It is used to initialize a package file and this is called package.json
+
+**Express**  
+Express is a minimal and flexible Node.js web application framework that provides a robust set of features to develop web and mobile applications. It facilitates the rapid development of Node based Web applications. Following are some of the core features of Express framework −
+
+1. Allows to set up middlewares to respond to HTTP Requests.
+2. Defines a routing table which is used to perform different actions based on HTTP Method and URL.
+3. Allows to dynamically render HTML Pages based on passing arguments to templates.
+
+npm install express --save is the command to install express.js
+--save basically adds Express int your package.json under the dependencies.
+
+* A port is just a channel that we've tuned our server to
+* .listen() method is used to create a server that listens on port xxxx on your computer.
+xxxx => 4 digit integer
+
+* If we wanted to be able to see when our port is set up and when our server is running, we can add a callback function to this method listen.
+
+#Handling Requests and Responses:-
+
+* localhost:3000 just represents the route or home page of our website.
+* .get() method that's provide by Express that allows us to specify what should happen when a browser gets in touch with our server and makes a get request
+The first parameter it takes is the location of the get request, the route of the website is represented by a forward slash "/", and the second parameter will be a callback function which will take two parameters request and response.
+*This callback function tells the server what to do when that request happens.
+
+* response.send("") method is used to send response.
+* response.sendFile(__dirname + "/fileName") method is used to send file as a response.
+
+** __dirname returns the path of the file in which directory it is located.
+** npm install body-parser
+This allows us to pass the information that we get sent from the post request.
+* body-parser is used with express therefore .use() function is used to run body-parser package.
+
+* When you are trying to parse data that comes from an HTML form always use .urlencoded({extended: true}).
+By setting that extended option to true, that basically just allows us to post nested objects.
+
+* body-parser allows you to go into any of your routes, and you can tap into something called request.body and this is the parsed version of HTTP request.
+
+* If you are working with numbers in js file never forget to typecast number using Number() method.
+
+
+**APIs**
+Application Programming Interfaces
+
+An **Application Programming Interface** (API) is a set of commands, functions, protocols, and objects that programmers can use to create software or interact with an external system.
+
+API includes:-
+* Endpoint
+* Paths:- The data after the last forward slash
+* Parameters: -The Parameters come after a question mark(?) and then they are set as a key value pair with an equal sign(=) and if you want to have more than one parameter, you separate each of the key value pairs with an ampersand(&).
+
+* Authentication:- Every time you make a request through the API, they have to be able to identify you as the developer and they have to keep track of how often you're using their server to get data
+
+* API Key is known as appid
+
+#JSON (JavaScript Object Notation):-
+
+* JSON Viewer Awesome is the free tool which converts JSON input into a tree structure, or a chart structure, or the original JSON input.
+
+* There are 5 ways to make HTTP Requests in NOde.js
+1. https
+2. Request
+3. Axios
+4. SuperAgent
+5. Got
+
+* https is a native node module which is already bundled within our Node project
+
+**HTTP response status codes**
+HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:
+
+1. Information responses(100-199)
+2. Successful responses(200-299)
+3. Redirects(300-399)
+4. Client errors(400-499)
+5. and Server errors(500-599) 
+
+* response.statusCode gives you the status response of the Server
+* JSON.parse() is used to convert JSON format data into JavaScript object format.
+* JSON.stringify() is used to convert JavaScript format into a string.
+* When we want to have multiple res.send() then we use res.write() function then pass single res.send() which will display all the res.write().
+
+* If we want to serve up static files to the server then we have to use .use(express.static("public")) and make the publuc folder in root directory and move the static files into that public folder.
+
+* https.request(url, options, function(response){
+	response.on("data", function(response(data){
+	})
+}) 
+
+* response.redirect("") function is used to take back to the directory you want.
+
+**HEROKU**
+
+* Use the heroku login command to log in to the Heroku CLI
+* In app.listen method we have to use port of HEROKU so we have to use command process.env.PORT instead of 3000.
+
+* Using process.env.PORT || 3000 then your app will work both on Heroku as well as our local system.
+
+* Define a **Procfile**, this is the file that Heroku is going to check to see how to launch your app and this Procfile is made without any extension.
+
+* To launch your app you have to run command:-
+web: node File.js
+You can also use nodemon instead of node so that you dont have to run the server again and again. nodemon will automatically sync the changes.
+
+* **heroku create** :- The heroku create CLI command creates a new empty application on Heroku, along with an associated empty Git repository. If you run this command from your app's root directory, the empty Heroku Git repository is automatically set as a remote for your local repository.
+
+* Type the command **git init**
+* Then add all the files using **git add .** command
+* Then commit the changes writing a message using **git commit -m "message"** command
+* The final thing that you have to do befor you can get your app live is to write **git push heroku master**
+
+* After this completion of process it will show you verifying deploy done and you can access it at the previous location.
+
+NOTE:- You might get an application error when you try to load up the site immediately. It's important that you give Heroku just a few minutes for it to set up of this complicated stuff. So login after 5 or 10 minutes.
+
+* heroku logs --tail is used to check your logs for details.
+
+Total CRUX of Heroku Deployment:-
+1. heroku login
+2. Change PORT in app.listen method from 3000 to process.env.PORT || 3000
+3. touch Procfile
+4. web: node fileName.js => write this command in Procfile
+5. heroku create
+6. git init
+7. git add .
+8. git commit -m ""
+9. git push heroku master
+
+* To update the changes done in the app you have to run the commands from 6 to 9as mentioned above.
+
+* https://quiet-wildwood-79619.herokuapp.com
+
+**GIT, GITHUB AND VERSION CONTROL**
+
+* Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later.
+
+* `git init` -> It is used to make git repository.
+* `git add` -> This is used to add file to the git repository.
+* `git add .` -> It is used to add all the files in the root directory to the git repository.
+
+* `git commit -m ""` -> It helps you to keep track of what changes you have made in each commit.
+
+* `git status` -> The git status command displays the state of the working directory and the staging area. It lets you see which changes have been staged, which haven't, and which files aren't being tracked by Git. Status output does not show you any information regarding the committed project history.
+
+* `git log` -> git log lists the commits made in that repository in reverse chronological order; that is, the most recent commits show up first.
+
+* Working directory is the folder where you initialize your git repository.
+
+* `git checkout` -> This command git checkout is used to revert back or rollout to the last position in our local repository.
+
+* `git diff` -> Diff command is used in git to track the difference between the changes made on a file. 
+
+*`git remote add origin URL` -> It is used to add your git local repository to your git repository.
+
+* `git push -u origin master` -> Use git push to push commits made on your local branch to a remote repository. -u is a just a flag. The git push command takes two arguments: A remote name, for example, origin. A branch name, for example, master. 
+
+* Remote Repository is GitHub which hosts our code and also host all of the changes that were made in between the different commits.
+
+* `git ignore` -> A gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected.
+This file is created by using .gitignore command and this file is hidden and untracked.
+
+* `git rm --cached -r .` -> Remove a file from index with git rm --cached before commit.
+
+* When you type names of files inside .gitignore file and mention *.txt that means when you commit your project all of the that have a text extension will be ignored.
+
+* The . gitignore file tells Git which files to ignore when committing your project to the GitHub repository . gitignore is located in the root directory of your repo. / will ignore directories with the name.
+
+* `git clone` -> git clone is a Git command line utility which is used to target an existing repository and create a clone, or copy of the target repository.
+
+* To make a branch in your repository use the command **git branch <branchName>**
+
+* You can check the number of branches in a repository by using command **git branch**.
+
+* `git checkout <branchName>` is used to switch to the respected branchName in git repository.
+
+* `git merge <remote>/master` -> This command combines the commits on a remote repo with the commits on your local repo.
+
+1. Creates a new commit that has multiple parents: called a "merge commit".
+2. every commit has a black pointer to its parent.
+3. When you run git merge you are pulling together other information and update your local repository based on that information.
+
+* README (as the name suggests: “read me”) is the first file one should read when starting a new project. It's a set of useful information about a project and a kind of manual. It is the first file Github or any Git hosting site will show when someone opens your repository.
+
+* Link:- https://learngitbranching.js.org/  
+* git fork:- Forking is done on the GitHub Account while Cloning is done using Git. When you fork a repository, you create a copy of the original repository (upstream repository) but the repository remains on your GitHub account.
+
+* Pull requests:- A pull request occurs when a developer asks for changes committed to an external repository to be considered for inclusion in a project's main repository. It is important to note that “pull requests” are a workflow method, and are not a feature of the version control system itself.
+
+* `git fetch` :- Git "fetch" Downloads commits, objects and refs from another repository. It fetches branches and tags from one or more repositories. It holds repositories along with the objects that are necessary to complete their histories to keep updated remote-tracking branches.
+
+**EJS**
+
+* .getDay() is used to get the days of the week as a number.
+
+* ejs.co is one of the best tool for EJS Templating.
+* EJS is a simple templating language which is used to generate HTML markup with plain JavaScript. It also helps to embed JavaScript to HTML pages.
+
+* app.set("view engine", "ejs")  -> This is the most important line in EJS.
+
+* res.render() uses the view engine that we set up here to render a particular page.
+
+* <%= variableName %> :- This is a marker that tells file to replace whatever is inside here with the value of the variable.
+
+#Tags in EJS:-
+
+* <% 'Scriptlet' tag, for control-flow, no output
+* <%_ ‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it
+* <%= Outputs the value into the template (HTML escaped)
+* <%- Outputs the unescaped value into the template
+* <%# Comment tag, no execution, no output
+* <%% Outputs a literal '<%'
+* %> Plain ending tag
+* -%> Trim-mode ('newline slurp') tag, trims following newline
+* _%> ‘Whitespace Slurping’ ending tag, removes all whitespace after it
+
+Note:- You have to add opening and closing tag on every JavaScipt line of code.
+
+* Date.toLocaleDateString() :- The toLocaleDateString() method converts the date (not the time) of a Date object into a readable string, using locale conventions.
+
+* There are different formats of date in JavaScript for different languages:-
+1. "en-US" :- For English
+2. "hi-IN" :- For Hindi
+
+* var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric');
+
+When this option is included in the .toLocaleDateString() as parameter then date is formatted according to different date formats of JavaScript.
+
+#SCOPE:- 
+In JavaScript there are two types of scope:
+
+1. Local scope
+2. Global scope
+JavaScript has function scope: Each function creates a new scope.
+
+Scope determines the accessibility (visibility) of these variables.
+
+Variables defined inside a function are not accessible (visible) from outside the function.
+
+#Local JavaScript Variables
+Variables declared within a JavaScript function, become LOCAL to the function.
+
+Local variables have Function scope: They can only be accessed from within the function.
+
+Example:-
+// code here can NOT use carName
+
+function myFunction() {
+  var carName = "Volvo";
+
+  // code here CAN use carName
+
+}
+Since local variables are only recognized inside their functions, variables with the same name can be used in different functions.
+
+Local variables are created when a function starts, and deleted when the function is completed.
+
+#Global JavaScript Variables
+A variable declared outside a function, becomes GLOBAL.
+
+A global variable has global scope: All scripts and functions on a web page can access it. 
+
+Example:- 
+var carName = "Volvo";
+
+// code here can use carName
+
+function myFunction() {
+
+  // code here can also use carName 
+
+}
+
+
+* var declarations are globally scoped or function scoped while let and const are block scoped. var variables can be updated and re-declared within its scope; let variables can be updated but not re-declared; const variables can neither be updated nor re-declared. They are all hoisted to the top of their scope.
+
+* If we want to add CSS File to our dynamic website then we have to tell Express explicitly to serve up the CSS files.
+app.use(express.static("folderName"))
+
+folderName will the folder which contain all your static files.
+
+#Layouts:- 
+
+npm install express-ejs-layouts
+
+* Layouts enable us to dynamically fix content or elements to a page in such a way that even if a different page is requested, the content remains but the page is successfully accessed.
+
+* <%- include("header") -%>
+* <%- include("footer") -%> 
+These two commands are use to add header and footer dynamically via ejs
+
+* module.exports exports the content of current directory into another directory.
+* module.exports is an JavaScript object.
+* **module.exports** and **exports** refer to the same thing.
+* Array.forEach() method of arrays llows you to loop through each item inside an array.
+
+#Route Parameters:-
+Route parameters are named URL segments that are used to capture the values specified at their position in the URL. The captured values are populated in the req.params object, with the name of the route parameter specified in the path as their respective keys.
+
+For Example:- 
+app.get('/users/:userId/books/:bookId', function (req, res) {
+  res.send(req.params)
+})
+
+NOTE:- When you type rs in nodemon while server is running then it forces nodemon to restart.
+
+* lodash is simply a utility library that makes it easier to work with JavaScript inside your Node apps.
+
+* Lodash makes JavaScript easier by taking the hassle out of working with arrays, numbers, objects, strings, etc.
+Lodash’s modular methods are great for:
+
+1. Iterating arrays, objects, & strings
+2. Manipulating & testing values
+3. Creating composite functions
+
+ 
