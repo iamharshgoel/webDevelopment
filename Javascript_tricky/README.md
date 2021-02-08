@@ -18,3 +18,19 @@
 
 * Use IIFE when you want a block level scope and another is when you want to avoid global level scope.
 
+# JavaScript Hoisting:-
+Hoisting is JavaScript's default behavior of moving declarations to the top.
+
+* In JavaScript, a variable can be declared after it has been used.
+In other words; a variable can be used before it has been declared.
+
+* Functions are hoisted to the top of the scope even before the variables are hoisted.
+
+* Redeclaration is allowed - redeclaration is treated as reassignment.
+* If we assign variable and initialize it with a value and if we again assign the same variable but not initialize it then it will be ignored.
+
+* If you have some code after return statement that is unreachable and simply ignored.
+
+* "use strict"; Defines that JavaScript code should be executed in "strict mode".
+* With strict mode, you can not, for example, use undeclared variables.
+ 
