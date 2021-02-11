@@ -812,4 +812,552 @@ Lodash’s modular methods are great for:
 2. Manipulating & testing values
 3. Creating composite functions
 
+
+**DATABASES**
+
+SQL vs NoSQL :-
+
+* SQL:- Structured Query Langugae
+* NoSQL:- Not Only Structured Query Language
+
+* SQL is Structured Query Language, which is a computer language for storing, manipulating and retrieving data stored in a relational database.
+
+SQL is the standard language for Relational Database System. All the Relational Database Management Systems (RDMS) like MySQL, MS Access, Oracle, Sybase, Informix, Postgres and SQL Server use SQL as their standard database language.
+
+* SQL inserts NULL if there is any empty block in the database.
+
+* NoSQL databases (aka "not only SQL") are non tabular, and store data differently than relational tables. NoSQL databases come in a variety of types based on their data model. The main types are document, key-value, wide-column, and graph. They provide flexible schemas and scale easily with large amounts of data and high user loads.
+
+* NoSQL is horizontally scalable.
+* NoSQL is JSON formatted document structure.
+* NoSQL databases are more flexible to changes.
+
+* SQL databases requires a schema.
+* SQL databases scales vertically.
+* SQL databases are table structured.
+
+* Every single database the first thing to do is to get yourself used to doing CRUD
+**C**reate
+**R**ead
+**U**pdate
+**D**estroy
+
+* The CREATE TABLE statement is used to create a new table in a database.
+
+Syntax:-
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+
+* The PRIMARY KEY constraint uniquely identifies each record in a table. Primary keys must contain UNIQUE values, and cannot contain NULL values. A table can have only ONE primary key; and in the table, this primary key can consist of single or multiple columns (fields).
+
+* The NOT NULL constraint enforces a column to NOT accept NULL values.
+
+* The INSERT INTO statement is used to insert new records in a table.
+INSERT INTO table_name
+
+* The VALUES statement is used to put values in the table.
+SYNTAX:-
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+* SELECT * FROM 'table_name';  is used to read the data
+-> * is used to select everything from the table.
+
+* The UPDATE statement is used to modify the existing records in a table.
+SYNTAX:-
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition; 
+
+* The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+
+The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+
+SYNTAX:-
+ALTER TABLE table_name
+ADD column_name datatype;
+
+* The DELETE statement is used to delete existing records in a table.
+SYNTAX:-
+DELETE FROM table_name WHERE condition;
+
+* The FOREIGN KEY constraint is a key used to link two tables together.
+
+A FOREIGN KEY is a field (or collection of fields) in one table that refers to the PRIMARY KEY in another table.
+
+SYNTAX:-
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);
+
+* The INNER JOIN keyword selects records that have matching values in both tables.
+SYNTAX:-
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+**MONGODB**
+
+Step1:- Download the mongodb community current release version.
+Step2:- Unzip the downloaded file
+Step3:- Use command
+        sudo mv "Path of the mongodb file" /usr/local/mongodb
+
+Step4:- Type the Password which you use to logon to your macbook
+Step5:- Type the command 
+        open /usr/local/mongodb
+
+Step6:- Make a file naming .bash_profile under home directory
+Step7:- ls -a to check whether the file has been made or not.
+Step8:- Open the file using vim editor and type export PATH=$PATH:/usr/local/mongodb/bin
+
+Step9:- Then make the folder to save the data of your database
+        mkdir -p /data/db
+
+Step10:- Then type command sudo chown harshgoel /data/db to get read and write access.
+
+Second Way to install mongodb is given below:-
+from the official docs https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+
+install homebrew and run the following commands
+
+sudo chown -R $(whoami) $(brew --prefix)/*
+
+then
+
+brew tap mongodb/brew
+
+then
+
+brew install mongodb-community@4.2
+
+and
+
+brew services start mongodb-community
+
+or
+
+mongod --config /usr/local/etc/mongod.conf
+
+then
+
+ps aux | grep -v grep | grep mongod
+
+and
+
+mongo
+
+to verify you can run show dbs in the mongo shell
+
+
+#CRUD Operations:-
+
+1. Create:- 
+Use command use <databaseName> to create new database
+then by putting the command db will tells you that you're currently working in which databse.
+* db.collection.insertOne() is used to add one entry to the database in one time.
+* db.collection.insertMany() is used to create many entries to the database in the moment.
+NOTE:- Both the functions will take Javascript Object as an parameter.
+
+* show collections command will return the total collections
+
+2. Read Queries:-
+* db.collection.find(query, projection)¶
+* query is of document type. Specifies selection filter using query operators. To return all documents in a collection, omit this parameter or pass an empty document ({}).
+* projection is also document type. Specifies the fields to return in the documents that match the query filter. To return all fields in the matching documents, omit this parameter.
+* Returns: A cursor to the documents that match the query criteria. When the find() method “returns documents,” the method is actually returning a cursor to the documents.
  
+* The projection parameter determines which fields are returned in the matching documents. The projection parameter takes a document of the following form:
+{ <field1>: <value>, <field2>: <value> ... }
+
+* <field>: <1 or true> :-	Specifies the inclusion of a field.
+* <field>: <0 or false> :- Specifies the exclusion of a field.
+
+3. Update:- 
+Update operations modify existing documents in a collection. MongoDB provides the following methods to update documents of a collection:
+
+* db.collection.updateOne()
+* db.collection.updateMany()
+* db.collection.replaceOne()
+In MongoDB, update operations target a single collection. All write operations in MongoDB are atomic on the level of a single document.
+
+You can specify criteria, or filters, that identify the documents to update. These filters use the same syntax as read operations.
+
+4.Delete:-
+Delete operations remove documents from a collection. MongoDB provides the following methods to delete documents of a collection:
+
+* db.collection.deleteOne()
+* db.collection.deleteMany()
+In MongoDB, delete operations target a single collection. All write operations in MongoDB are atomic on the level of a single document.
+
+You can specify criteria, or filters, that identify the documents to remove. These filters use the same syntax as read operations.
+
+#Native Driver in MongoDB:-
+To connect Node.js app with the database we need MongoDB Native driver and ODM(Object Document Mapper) that's called mongoose.
+
+Step 1: Make Directory
+Step 2: Make app.js file
+Step 3: npm init
+Step 4: npm install mongodb
+
+* assert just validates our data entry and our connection to the MongoDB datbase.
+* The official MongoDB Node.js driver provides both callback-based and Promise-based interaction with MongoDB, allowing applications to take full advantage of the new features in ES6. The 2.x series of the driver is powered by a brand new core driver and BSON library.
+
+
+*Why the -y?
+If you specify the -y option in the command, NPM automatically accepts the default values for the command. Omit the -y flag to interactively select your project settings.
+
+* Avoid “current URL string parser is deprecated” warning by setting useNewUrlParser to true
+If this warning occurs then use this code:-
+If you are using version >= 3.1.0, change your mongo connection file to ->
+
+MongoClient.connect("mongodb://localhost:27017/YourDB", { useNewUrlParser: true })
+There is another update use { useUnifiedTopology: true } in MongoDB constructor.
+
+* The insert command returns an object with the following fields:
+
+1. result:- Contains the result document from MongoDB
+2. ops:- Contains the documents inserted with added _id fields
+3. connection:- Contains the connection used to perform the insert
+
+#Error:-
+If You Have Forgotten to Quit the Mongod Server
+You can use CTRL + C in your Terminal to shut down your mongod connection.
+
+If you have closed down Terminal or Hyper and forgot to close down your mongod connection, you might get an error that says:
+2018-11-04T16:17:53.473+1300 E STORAGE  [initandlisten] Failed to set up listener: SocketException: Address already in use
+2018-11-04T16:17:53.474+1300 I CONTROL  [initandlisten] now exiting
+2018-11-04T16:17:53.474+1300 I CONTROL  [initandlisten] shutting down with code:48
+
+In this case, you'll have to follow these steps to manually shut down the mongod process:
+
+1. Open up a fresh Hyper Terminal tab
+
+2. Paste the command below into Hyper:
+
+sudo pkill -f mongod
+
+3. Now enter the password that you use to log on to the Mac.
+
+4. Open a new Hyper terminal, you should now be able to run the mongod command again.
+
+
+#Mongoose:-
+Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
+
+The main objective of this framework is to simplify the writing of validation code, the writing of your business logic boilerplate and just to make the code just shorter and easier to work with.
+
+npm install mongoose
+This command is used to install mongoose using npm package.
+
+* To delete database from mongoDB then use this command process:-
+1. use databaseName
+2. db.dropDatabase()
+
+mongoose.connect("mongodb://localhost:27017//databaseName") this command is used to connect with database at port 27017 using mongoose.
+If the databaseName doesn't exist, then it will create his brand new database.
+
+* If you want to add many items at once in the database using mongoose then
+model.insertMany([], callbackFunc(){} ) is used.
+
+* To read from your database with mongoose model.find(function(error, whatToFind){}) is used.
+
+* Whenever you are working with mongoDB and mongoose always close the connection at last of the module using mongoose.connection.close();
+
+* When you have to validate your data then you have to mention type and required field.
+For eg:- const fruitSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Please check your entry, no name specified"]
+  rating: {
+    type: Number,
+    min: 1,
+    max: 10
+  },
+  review: String
+});
+
+* To update the data there are 3 methods to update:
+1. Model.updateOne()
+2. Model.update()
+3. Model.updateMany()
+
+* To delete the document:
+1. Model.deleteOne()
+2. Model.deleteMany()
+
+* To avoid deprecation warning always include {useNewUrlParser: true} in the mongoose.connect();
+
+* Mongoose Document
+
+const <constantName> = new <ModelName> ({
+      <fieldName> : <fieldData>,
+      ....
+
+});
+
+* Mongoose insertMany()
+
+<ModelName>.insertMany(<documentArray>, function(err){
+    //Deal with error or log success.
+});
+
+* Mongoose find()
+
+<ModelName>.find({conditions}, function(err, results){
+    //Use the found result ocs.
+});
+
+* To submit the form when checkbox is checked then add this attribute in the input tab
+onChange = "this.form.submit()"
+
+* Mongoose findByIdAndRemove()
+
+<ModelName>.findByIdAndRemove(<Id>, function(err){
+   //Handle any errors or log success.
+});
+
+* Express Route Parameters
+
+app.get("/category/:<paramName>", function(req, res){
+    //Access req.params.paramName
+});
+
+* Mongoose findOne()
+
+<ModelName>.find({conditions}, function(err, results){
+    //Use the found results docs.
+});
+
+
+* Mongoose findOneAndUpdate()
+
+<ModelName>.findOneAndUpdate(
+   {conditions},
+   {updates},
+   function(err, results){}
+);
+
+In actual {updates} is equal to {$pull: {field: {query}}}
+
+#MongoDB Atlas:-
+
+* Create a cluster using aws and slecting North Virginia(us-east-1) then setup the security using appropriate version.
+
+#Deploying app with DATABASE using heroku:-
+
+Follow the documentation.
+
+* Create git repository.
+* login to heroku CLI using command heroku login
+* then use command heroku create
+* then create Procfile using command touch Procfile and write web: node app.js in the Procfile.
+* Use a database or object storage instead of writing to your local filesystem
+* use command git push heroku master to push the app to heroku
+
+
+#REST :-
+
+REST means REpresentational State Transfer
+
+HTTP:- Hyper Text Transfer Protocol
+
+HTPPS:- Hyper Text Transfer Protocol secured
+
+API building is like building the menu of things that our server can respond.
+REST is an architectural style for designing APIs.
+
+* These are the 5  HTTP verbs that we should use in order to make our API RESTful:-
+1. GET
+2. POST
+3. PUT
+4. PATCH
+5. DELETE  
+
+GET is basically same as read
+POST corresponds to the create word in our CRUD functions.
+PUT and PATCH update our database.
+
+PUT is updating your database by sending an entire etry to replace the previous one.
+PATCH is sending the piece of data that needs to be updated.
+
+
+DELETE is same as DELETE in CRUD
+
+* For creating database using Robo 3T download robo 3T from the website robomongo.org 
+
+* You can create chainable route handlers for a route path by using app.route(). Because the path is specified at a single location, creating modular routes is helpful, as in reducing redundancy and typos. 
+
+* UPDATE
+
+<ModelName>.update(
+   {conditions},
+   {updates},
+   {overwrite: true}
+   function(err, results){}
+);
+
+* {overwrite: true} tells MongoDB that we want to overwrite the entire document with what is specified in the update.
+
+* .get() method uses .findOne() method to get a specific article.
+* .put() method uses .update() method to put a specific article.
+
+* When we only want to update a specific field in a specific document then the HTTP method patch is used.
+
+* In .patch() method also .update() method is used.
+<ModelName>.update(
+  {conditions},
+  {$set: updates},
+  function(err, results){}
+);
+
+* For deleting a specific article use .deleteOne() method.
+<ModelName>.deleteOne(
+  {conditions},
+  functions(err){}
+);
+
+
+#Authentication & Security:-
+
+In security, authentication is the process of verifying whether someone (or something) is, in fact, who (or what) it is declared to be. Authentication: Verifying the identity of a user, process, or device, often as a prerequisite to allowing access to resources in an information system.
+
+LEVEL 2 of authentication includes Database Encryption
+With database encryption, an encryption algorithm transforms data within a database from a readable state into a ciphertext of unreadable characters. With a key generated by the algorithm, a user can decrypt the data and retrieve the usable information as needed.
+
+Encryption basically means just scrambling something so that people can't tell what original was.
+
+mongoose-encryption is the npm package that we need in encrtyption.
+
+When we have to encrypt only certain fields then we have to add "encryptedFields" option into the JavaScript object at the end of that plugin code.
+
+* During save, documents are encrypted and then signed. During find, documents are authenticated and then decrypted.
+
+#Using Environment Variables to Keep Secrets Safe
+
+* Environment variables are basically a very very simple file that we're going to keep certain sensitive variables such as encryption keys and API keys.
+
+Usage
+* As early as possible in your application, require and configure dotenv
+require('dotenv').config()
+
+* ls -a command is used to see hidden files from the terminal.
+
+* Create a .env file in the root directory of your project. Add environment-specific variables on new lines in the form of NAME=VALUE.
+
+For Example:- 
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=s1mpl3
+
+* By using **process.env.propertyName** we can access the property from .env file
+
+#Hashing:-
+Encryption is a two-way function where information is scrambled using an encryption key and unscrambled later using a decryption key.
+         
+           Hash
+Password ---------> Hash
+	  Function
+
+Hash functions are mathematical equations that are designed to make it almost impossible to go backwards.
+It is impossible to turn a hash back into a password.
+* Decoding is not allowed in hash functions.
+
+npm i md5
+
+* when you run hash function on the same string, the hash that's created is always going to be the same.
+
+# Hashing and Salting:-
+
+                   Hash
+Password + Salt --------------> Hash
+                 Function
+
+# Level 4 with bcrypt:-
+The bcrypt hashing function allows us to build a password security platform that scales with computation power and always hashes every password with a salt.
+
+* With "salt round" they actually mean the cost factor. The cost factor controls how much time is needed to calculate a single BCrypt hash. The higher the cost factor, the more hashing rounds are done. Increasing the cost factor by 1 doubles the necessary time.
+
+* If you want to upgrade or degrade the version of node then install nvm using this link:-
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+
+then run the command nvm install {the version which you want to install}
+
+Procedure:-
+1. Before installing nvm, run this in terminal: touch ~/.bash_profile
+
+2. After, run this in terminal:
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+
+3. Important... - DO NOT forget to Restart your terminal OR use command source ~/.nvm/nvm.sh (this will refresh the available commands in your system path).
+
+4. In the terminal, use command nvm --version and you should see the version
+
+Usage:-
+bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
+    // Store hash in your password DB.
+});
+
+Compare:- 
+bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+    // result == true
+});
+
+# Cookies and Sessions:-
+
+* Session is a period of time whena browser interacts with a server.
+* Cookies are small data that are stored on a client side and sent to the client along with server requests.
+
+Passport.js :-
+Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.
+
+npm install
+* passport
+* passport-local
+* passport-local-mongoose
+* express-session NOT express-sessions
+
+
+* Serialize means storing the information or the message of the user.
+* Deserialize means passport is able to crumble the cookie and discover the message inside which is who this user is.
+
+* If you encounter some deprectaion warning like this:-
+DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
+then add this line in your code below mongoose.connect()
+💡mongoose.set("useCreateIndex", true);
+
+* Whenever your server gets restarted your cookie gets deleted and your session gets restarted.
+
+# Level6 :-
+
+* OAuth :- Open Authorisation
+By using OAuth we're able to access pieces of information on these third party websites.
+
+1. OAuth allows you to grant Granular Access Levels
+2. It allows for either read only or read and write access.
+3. Revoke Access at any point on their website
+
+Steps for OAuth:-
+1. Set Up Your App :- We have to set up pur app in their developer console and in return we get what's called an app id or a client id and we or our website is then the client which will make their request to Facebook, Gmail etc. to authenticate our user.
+
+2. Redirect to Authenticate
+3. User Logs In 
+4. User Grants Permissions
+5. Receive Authorisation code :- Website will receive an authorization code from Facbook or Gmail and this allows us to check to make sure that the user actually successfully signed on to Facebook.
+
+6. Exchange AuthCode for Access Token
+
+* passport-local-mongoose and mongoose-findorcreate are added as plugins to the schemas.
+
+
+
+
